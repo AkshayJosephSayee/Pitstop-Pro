@@ -1,0 +1,161 @@
+[10-Nov-2025 13:40:52 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:40:52 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:46:39 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:46:39 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'field list'
+[10-Nov-2025 13:46:39 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:46:39 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'field list'
+[10-Nov-2025 13:46:39 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:46:39 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'field list'
+[10-Nov-2025 13:46:47 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:46:47 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'field list'
+[10-Nov-2025 13:46:48 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:46:48 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'field list'
+[10-Nov-2025 13:49:13 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:49:13 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:49:14 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:49:14 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:49:14 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:49:14 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:49:28 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:49:28 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:53:19 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:53:19 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:58:38 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:58:38 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 13:59:00 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 13:59:00 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 14:07:47 Europe/Berlin] Database connection state: connected
+[10-Nov-2025 14:07:47 Europe/Berlin] Error in getAllServices: Query failed: Unknown column 'service_name' in 'order clause'
+[10-Nov-2025 15:18:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_login.php on line 5
+[10-Nov-2025 15:18:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:32 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:48 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:48 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:18:56 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:12 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:30 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:46 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:48 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:19:56 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:00 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:13 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:30 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:42 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:42 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:49 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:49 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:52 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:58 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:20:58 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:21:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:21:02 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_login.php on line 5
+[10-Nov-2025 15:22:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:11 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:13 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:22:18 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:29 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:34 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:34 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:40 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:40 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:43 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:43 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:51 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:51 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:54 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:54 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:56 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:56 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:59 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:23:59 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:01 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:01 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:18 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:21 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:26 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:30 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:32 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:24:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\Pitstop-Pro-main\admin_ajax.php on line 9
+[10-Nov-2025 15:54:15 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[10-Nov-2025 15:54:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:16 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:18 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:21 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:25 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:54:34 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:55:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:55:49 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:55:52 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:19 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:19 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:42 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:43 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:54 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:56:58 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:57:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 15:59:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 16:02:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 16:05:09 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[10-Nov-2025 16:06:56 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 14:31:13 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[11-Nov-2025 14:31:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[11-Nov-2025 14:31:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 14:31:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 14:31:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 14:31:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 14:31:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 14:31:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 15:06:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 15:06:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 15:06:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 15:06:15 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[11-Nov-2025 15:06:19 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
