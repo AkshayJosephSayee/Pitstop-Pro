@@ -57,6 +57,49 @@ $allSlots = getAllSlots();
         input,select,textarea{padding:12px;border:2px solid #e0e0e0;border-radius:8px;font-size:14px;transition:border 0.3s}
         input:focus,select:focus,textarea:focus{outline:none;border-color:#667eea}
         .slot-date-filter{margin-bottom:20px;padding:15px;background:#f8f9fa;border-radius:8px}
+        .bill-preview {
+    border: 2px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 16px;
+    background: #f9f9f9;
+}
+
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 5px 0;
+}
+
+.bill-total {
+    border-top: 2px solid #333;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.bill-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border-left: 4px solid #007bff;
+}
+
+.additional-items {
+    margin-bottom: 20px;
+}
+
+.bill-summary {
+    margin-top: 20px;
+}
+
+.bill-actions {
+    display: flex;
+    gap: 10px;
+}
     </style>
 </head>
 <body>
@@ -178,21 +221,71 @@ $allSlots = getAllSlots();
             </table>
         </div>
 
-        <!-- Bills Tab -->
-        <div id="bills" class="tab-content">
-            <h2 style="margin-bottom:20px">Generate Bill</h2>
-            <div class="form-grid">
-                <div class="form-group"><label>Select Booking</label><select id="billBooking" onchange="loadBookingDetails()"><option value="">Select a booking</option></select></div>
-                <div class="form-group"><label>Customer Name</label><input type="text" id="billCustomerName" readonly></div>
-                <div class="form-group"><label>Service</label><input type="text" id="billService" readonly></div>
+<div id="bills" class="tab-content">
+    <h2 style="margin-bottom:20px">Generate Bill</h2>
+    
+    <div class="alert alert-info">
+        <i class="fa fa-info-circle"></i> Select a booking to generate a bill. The system will auto-populate customer and service details.
+    </div>
+    
+    <div class="bill-generation-section">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Select Booking *</label>
+                <select id="billBooking" onchange="loadBookingDetails()" required class="form-control">
+                    <option value="">Select a booking...</option>
+                </select>
+                <small class="form-text text-muted">Only shows bookings that don't have bills yet</small>
             </div>
-            <h3>Additional Items</h3>
-            <div id="additionalItems"></div>
-            <button class="btn btn-success" onclick="addBillItem()">Add Item</button>
-            <div class="bill-preview" id="billPreview" style="margin-top:16px"></div>
-            <button class="btn btn-primary" style="margin-top:20px" onclick="generateBill()">Generate & Print Bill</button>
+            <div class="form-group">
+                <label>Customer Name</label>
+                <input type="text" id="billCustomerName" readonly class="form-control" placeholder="Select a booking to auto-fill">
+            </div>
+            <div class="form-group">
+                <label>Customer Phone</label>
+                <input type="text" id="billCustomerPhone" readonly class="form-control" placeholder="Select a booking to auto-fill">
+            </div>
+            <div class="form-group">
+                <label>Service Type</label>
+                <input type="text" id="billService" readonly class="form-control" placeholder="Select a booking to auto-fill">
+            </div>
+            <div class="form-group">
+                <label>Base Service Price (₹)</label>
+                <input type="number" id="billBasePrice" readonly class="form-control" placeholder="0.00" step="0.01">
+            </div>
+        </div>
+
+        <h3 style="margin-top:30px;">Additional Charges</h3>
+        <p class="text-muted">Add any extra charges like parts, labor, or other services.</p>
+        
+        <div id="additionalItems" class="additional-items"></div>
+        
+        <button type="button" class="btn btn-success" onclick="addBillItem()" style="margin-bottom:20px">
+            <i class="fa fa-plus"></i> Add Additional Charge
+        </button>
+
+        <div class="bill-summary" style="margin-top:30px;">
+            <h3>Bill Summary</h3>
+            <div class="bill-preview" id="billPreview">
+                <div class="bill-header" style="background:#f8f9fa; padding:15px; border-bottom:1px solid #ddd;">
+                    <h4 style="margin:0; color:#333;">Bill Preview</h4>
+                </div>
+                <div id="billPreviewContent" style="padding:20px;">
+                    <p class="text-muted">Select a booking to preview bill</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bill-actions" style="margin-top:30px; padding-top:20px; border-top:1px solid #ddd;">
+            <button class="btn btn-primary btn-lg" onclick="generateBill()" id="generateBillBtn">
+                <i class="fa fa-file-invoice"></i> Generate Bill
+            </button>
+            <button class="btn btn-secondary" onclick="clearBillForm()">
+                <i class="fa fa-times"></i> Clear Form
+            </button>
         </div>
     </div>
+</div>
 
     <!-- User Modal -->
     <div id="userModal" class="modal">
@@ -270,536 +363,741 @@ $allSlots = getAllSlots();
         </div>
     </div>
 
-    <script>
-        // Your complete JavaScript code here
-        let bookings = <?php echo json_encode($recentBookings); ?>;
-        let users = <?php echo json_encode($allUsers); ?>;
-        let services = <?php echo json_encode($allServices); ?>;
-        let slots = <?php echo json_encode($allSlots); ?>;
-        let billItems = [];
+   <script>
+    // Your complete JavaScript code here
+    let bookings = <?php echo json_encode($recentBookings); ?>;
+    let users = <?php echo json_encode($allUsers); ?>;
+    let services = <?php echo json_encode($allServices); ?>;
+    let slots = <?php echo json_encode($allSlots); ?>;
+    let billItems = [];
+    
+    // Bill Management Variables
+    let currentBookingDetails = null;
+    let additionalItems = [];
 
-        async function postAction(action, payload = {}) {
-            const form = new URLSearchParams();
-            form.append('action', action);
-            if (Object.keys(payload).length) {
-                form.append('data', JSON.stringify(payload));
-            }
-            const res = await fetch('admin_ajax.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: form.toString()
-            });
-            return res.json();
+    async function postAction(action, payload = {}) {
+        const form = new URLSearchParams();
+        form.append('action', action);
+        if (Object.keys(payload).length) {
+            form.append('data', JSON.stringify(payload));
         }
+        const res = await fetch('admin_ajax.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: form.toString()
+        });
+        return res.json();
+    }
 
-        function showTab(tabName, btn){
-            document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            if(btn) btn.classList.add('active');
-            
-            if(tabName==='dashboard') loadDashboard();
-            if(tabName==='users') loadUsers();
-            if(tabName==='services') loadServices();
-            if(tabName==='slots') loadSlots();
-            if(tabName==='bills') loadBillBookings();
-        }
-
-        // Dashboard functions
-        async function loadDashboard(){
-            try {
-                const response = await postAction('get_dashboard_stats');
-                if (response.success) {
-                    renderDashboard(response.data);
-                } else {
-                    console.error('Error loading dashboard:', response.error);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        function renderDashboard(data){
-            // Update dashboard stats if needed
-            console.log('Dashboard data:', data);
-        }
-
-        // Report functions
-        async function generateReport() {
-            const reportType = document.getElementById('reportType').value;
-            const fromDate = document.getElementById('reportFromDate').value;
-            const toDate = document.getElementById('reportToDate').value;
-
-            if (!fromDate || !toDate) {
-                alert('Please select both From Date and To Date');
-                return;
-            }
-
-            try {
-                const response = await postAction('generate_report', {
-                    type: reportType,
-                    from_date: fromDate,
-                    to_date: toDate
-                });
-
-                if (response.success) {
-                    const resultsDiv = document.getElementById('reportResults');
-                    let html = '';
-
-                    switch (reportType) {
-                        case 'booking':
-                            html = generateBookingReport(response.data);
-                            break;
-                        case 'service':
-                            html = generateServiceReport(response.data);
-                            break;
-                        case 'revenue':
-                            html = generateRevenueReport(response.data);
-                            break;
-                        case 'slots':
-                            html = generateSlotReport(response.data);
-                            break;
-                    }
-
-                    resultsDiv.innerHTML = html;
-                } else {
-                    alert(response.error || 'Failed to generate report');
-                }
-            } catch (error) {
-                console.error('Error generating report:', error);
-                alert('An error occurred while generating the report');
-            }
-        }
-
-        function generateBookingReport(data) {
-            return `
-                <div class="report-section">
-                    <h3>Booking Status Report (${data.date_range})</h3>
-                    <div class="stats-summary">
-                        <div class="stat-item">Total Bookings: ${data.total_bookings}</div>
-                        <div class="stat-item">Completed: ${data.completed}</div>
-                        <div class="stat-item">Pending: ${data.pending}</div>
-                        <div class="stat-item">Cancelled: ${data.cancelled}</div>
-                    </div>
-                </div>`;
-        }
-
-        function generateServiceReport(data) {
-            return `
-                <div class="report-section">
-                    <h3>Service Status Report (${data.date_range})</h3>
-                    <div class="stats-summary">
-                        <div class="stat-item">Total Services: ${data.total_services}</div>
-                        <div class="stat-item">Most Popular: ${data.most_popular}</div>
-                        <div class="stat-item">Average Duration: ${data.avg_duration}h</div>
-                    </div>
-                </div>`;
-        }
-
-        function generateRevenueReport(data) {
-            return `
-                <div class="report-section">
-                    <h3>Revenue Report (${data.date_range})</h3>
-                    <div class="stats-summary">
-                        <div class="stat-item">Total Revenue: ₹${data.total_revenue}</div>
-                        <div class="stat-item">Average Daily Revenue: ₹${data.avg_daily_revenue}</div>
-                        <div class="stat-item">Outstanding Amount: ₹${data.outstanding_amount}</div>
-                    </div>
-                </div>`;
-        }
-
-        function generateSlotReport(data) {
-            return `
-                <div class="report-section">
-                    <h3>Slot Utilization Report (${data.date_range})</h3>
-                    <div class="stats-summary">
-                        <div class="stat-item">Total Slots: ${data.total_slots}</div>
-                        <div class="stat-item">Utilized: ${data.utilized_slots}</div>
-                        <div class="stat-item">Utilization Rate: ${data.utilization_rate}%</div>
-                    </div>
-                </div>`;
-        }
-
-        // Users functions
-        async function loadUsers(){
-           
-                const res = await postAction('getUsers');
-                if (res.success) {
-                    users = res.data || [];
-                    renderUsers();
-                }
-            } 
+    function showTab(tabName, btn){
+        document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        document.getElementById(tabName).classList.add('active');
+        if(btn) btn.classList.add('active');
         
+        if(tabName==='dashboard') loadDashboard();
+        if(tabName==='users') loadUsers();
+        if(tabName==='services') loadServices();
+        if(tabName==='slots') loadSlots();
+        if(tabName==='bills') {
+            console.log('Initializing bills tab...');
+            loadBillableBookings();
+        }
+    }
 
-        function renderUsers(){
-            document.getElementById('usersTable').innerHTML = users.map(u=>`<tr><td>${u.id||''}</td><td>${u.name||''}</td><td>${u.email||''}</td><td>${u.phone||''}</td><td>${u.role||'customer'}</td><td><button class="btn btn-warning" onclick="showEditUser(${u.id||0})">Edit</button> <button class="btn btn-danger" onclick="deleteUser(${u.id||0})">Delete</button></td></tr>`).join('');
+    // Dashboard functions
+    async function loadDashboard(){
+        try {
+            const response = await postAction('get_dashboard_stats');
+            if (response.success) {
+                renderDashboard(response.data);
+            } else {
+                console.error('Error loading dashboard:', response.error);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    function renderDashboard(data){
+        // Update dashboard stats if needed
+        console.log('Dashboard data:', data);
+    }
+
+    // Report functions
+    async function generateReport() {
+        const reportType = document.getElementById('reportType').value;
+        const fromDate = document.getElementById('reportFromDate').value;
+        const toDate = document.getElementById('reportToDate').value;
+
+        if (!fromDate || !toDate) {
+            alert('Please select both From Date and To Date');
+            return;
         }
 
-        // Services functions
-        async function loadServices(){
-         
-                const res = await postAction('getServices');
-                if (res.success) { services = res.data || []; renderServices(); }
-            } 
+        try {
+            const response = await postAction('generate_report', {
+                type: reportType,
+                from_date: fromDate,
+                to_date: toDate
+            });
 
-        function renderServices(){
-            document.getElementById('servicesTable').innerHTML = services.map(s=>`<tr><td>${s.id||s.Service_id||''}</td><td>${s.name||s.service_type||''}</td><td>${s.description||''}</td><td>₹${s.price||0}</td><td>${s.duration||s.Estimated_duration||''} hours</td><td><button class="btn btn-warning" onclick="showEditService(${s.id||s.Service_id||0})">Edit</button> <button class="btn btn-danger" onclick="deleteService(${s.id||s.Service_id||0})">Delete</button></td></tr>`).join('');
+            if (response.success) {
+                const resultsDiv = document.getElementById('reportResults');
+                let html = '';
+
+                switch (reportType) {
+                    case 'booking':
+                        html = generateBookingReport(response.data);
+                        break;
+                    case 'service':
+                        html = generateServiceReport(response.data);
+                        break;
+                    case 'revenue':
+                        html = generateRevenueReport(response.data);
+                        break;
+                    case 'slots':
+                        html = generateSlotReport(response.data);
+                        break;
+                }
+
+                resultsDiv.innerHTML = html;
+            } else {
+                alert(response.error || 'Failed to generate report');
+            }
+        } catch (error) {
+            console.error('Error generating report:', error);
+            alert('An error occurred while generating the report');
         }
+    }
 
-        // Slots Management
-        async function loadSlots() {
-            try {
-                const dateFilter = document.getElementById('slotDateFilter').value;
-                const rangeFilter = document.getElementById('slotRangeFilter').value;
-                
-                const res = await postAction('getSlots', { 
-                    date: dateFilter, 
-                    range: rangeFilter 
+    function generateBookingReport(data) {
+        return `
+            <div class="report-section">
+                <h3>Booking Status Report (${data.date_range})</h3>
+                <div class="stats-summary">
+                    <div class="stat-item">Total Bookings: ${data.total_bookings}</div>
+                    <div class="stat-item">Completed: ${data.completed}</div>
+                    <div class="stat-item">Pending: ${data.pending}</div>
+                    <div class="stat-item">Cancelled: ${data.cancelled}</div>
+                </div>
+            </div>`;
+    }
+
+    function generateServiceReport(data) {
+        return `
+            <div class="report-section">
+                <h3>Service Status Report (${data.date_range})</h3>
+                <div class="stats-summary">
+                    <div class="stat-item">Total Services: ${data.total_services}</div>
+                    <div class="stat-item">Most Popular: ${data.most_popular}</div>
+                    <div class="stat-item">Average Duration: ${data.avg_duration}h</div>
+                </div>
+            </div>`;
+    }
+
+    function generateRevenueReport(data) {
+        return `
+            <div class="report-section">
+                <h3>Revenue Report (${data.date_range})</h3>
+                <div class="stats-summary">
+                    <div class="stat-item">Total Revenue: ₹${data.total_revenue}</div>
+                    <div class="stat-item">Average Daily Revenue: ₹${data.avg_daily_revenue}</div>
+                    <div class="stat-item">Outstanding Amount: ₹${data.outstanding_amount}</div>
+                </div>
+            </div>`;
+    }
+
+    function generateSlotReport(data) {
+        return `
+            <div class="report-section">
+                <h3>Slot Utilization Report (${data.date_range})</h3>
+                <div class="stats-summary">
+                    <div class="stat-item">Total Slots: ${data.total_slots}</div>
+                    <div class="stat-item">Utilized: ${data.utilized_slots}</div>
+                    <div class="stat-item">Utilization Rate: ${data.utilization_rate}%</div>
+                </div>
+            </div>`;
+    }
+
+    // Users functions
+    async function loadUsers(){
+        const res = await postAction('getUsers');
+        if (res.success) {
+            users = res.data || [];
+            renderUsers();
+        }
+    }
+
+    function renderUsers(){
+        document.getElementById('usersTable').innerHTML = users.map(u=>`<tr><td>${u.id||''}</td><td>${u.name||''}</td><td>${u.email||''}</td><td>${u.phone||''}</td><td>${u.role||'customer'}</td><td><button class="btn btn-warning" onclick="showEditUser(${u.id||0})">Edit</button> <button class="btn btn-danger" onclick="deleteUser(${u.id||0})">Delete</button></td></tr>`).join('');
+    }
+
+    // Services functions
+    async function loadServices(){
+        const res = await postAction('getServices');
+        if (res.success) { services = res.data || []; renderServices(); }
+    }
+
+    function renderServices(){
+        document.getElementById('servicesTable').innerHTML = services.map(s=>`<tr><td>${s.id||s.Service_id||''}</td><td>${s.name||s.service_type||''}</td><td>${s.description||''}</td><td>₹${s.price||0}</td><td>${s.duration||s.Estimated_duration||''} hours</td><td><button class="btn btn-warning" onclick="showEditService(${s.id||s.Service_id||0})">Edit</button> <button class="btn btn-danger" onclick="deleteService(${s.id||s.Service_id||0})">Delete</button></td></tr>`).join('');
+    }
+
+    // Slots Management
+    async function loadSlots() {
+        try {
+            const dateFilter = document.getElementById('slotDateFilter').value;
+            const rangeFilter = document.getElementById('slotRangeFilter').value;
+            
+            const res = await postAction('getSlots', { 
+                date: dateFilter, 
+                range: rangeFilter 
+            });
+            
+            if (res.success) {
+                slots = res.data || [];
+                renderSlots();
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    function renderSlots() {
+        const tbody = document.getElementById('slotsTable');
+        tbody.innerHTML = slots.map(slot => `
+            <tr>
+                <td>${slot.slot_id}</td>
+                <td>${slot.slot_date}</td>
+                <td>${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}</td>
+                <td>${slot.max_capacity}</td>
+                <td>${slot.current_bookings || 0}</td>
+                <td>${slot.max_capacity - (slot.current_bookings || 0)}</td>
+                <td>
+                    <span class="status-badge status-${(slot.S_status || 'Available').toLowerCase().replace(' ', '-')}">
+                        ${slot.S_status || 'Available'}
+                    </span>
+                </td>
+                <td>
+                    <select class="form-control" onchange="updateSlotStatus(${slot.slot_id}, this.value)" style="display:inline-block; width:auto;">
+                        <option value="Available" ${(slot.S_status || 'Available') === 'Available' ? 'selected' : ''}>Available</option>
+                        <option value="Blocked" ${(slot.S_status || 'Available') === 'Blocked' ? 'selected' : ''}>Blocked</option>
+                    </select>
+                    <button class="btn btn-danger btn-sm" onclick="deleteSlot(${slot.slot_id})">Delete</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function formatTime(timeString) {
+        if (!timeString) return '';
+        const time = new Date('1970-01-01T' + timeString + 'Z');
+        return time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+
+    function showCreateSlotsModal() {
+        document.getElementById('createSlotsModal').classList.add('active');
+        // Set default dates
+        const today = new Date().toISOString().split('T')[0];
+        const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        document.getElementById('slotStartDate').value = today;
+        document.getElementById('slotEndDate').value = nextWeek;
+    }
+
+    async function updateSlotStatus(slotId, newStatus) {
+        try {
+            const res = await postAction('updateSlotStatus', { 
+                slotId: slotId, 
+                status: newStatus 
+            });
+            
+            if (res.success) {
+                loadSlots();
+            } else {
+                alert(res.error || 'Failed to update slot status');
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    async function deleteSlot(slotId) {
+        if (!confirm('Are you sure you want to delete this slot? This action cannot be undone.')) {
+            return;
+        }
+        
+        try {
+            const res = await postAction('deleteSlot', { slotId: slotId });
+            
+            if (res.success) {
+                loadSlots();
+            } else {
+                alert(res.error || 'Failed to delete slot');
+            }
+        } catch (e) { console.error(e); }
+    }
+
+    // Modal functions
+    function showAddUserModal() {
+        document.getElementById('userModalTitle').textContent = 'Add New User';
+        document.getElementById('editUserId').value = '';
+        document.getElementById('userName').value = '';
+        document.getElementById('userEmail').value = '';
+        document.getElementById('userPhone').value = '';
+        document.getElementById('userPassword').value = '';
+        document.getElementById('userRole').value = 'customer';
+        document.getElementById('userModal').classList.add('active');
+    }
+
+    function showAddServiceModal() {
+        document.getElementById('serviceModalTitle').textContent = 'Add New Service';
+        document.getElementById('editServiceId').value = '';
+        document.getElementById('serviceName').value = '';
+        document.getElementById('serviceDescription').value = '';
+        document.getElementById('servicePrice').value = '';
+        document.getElementById('serviceDuration').value = '';
+        document.getElementById('serviceModal').classList.add('active');
+    }
+
+    // CORRECTED JavaScript Bill Functions
+
+    async function loadBillableBookings() {
+        try {
+            console.log('Loading billable bookings...');
+            
+            const res = await postAction('getBillableBookings');
+            console.log('Billable bookings response:', res);
+            
+            const select = document.getElementById('billBooking');
+            select.innerHTML = '<option value="">Select a booking...</option>';
+            
+            if (res.success && res.data && res.data.length > 0) {
+                res.data.forEach(booking => {
+                    const option = document.createElement('option');
+                    option.value = booking.booking_id;
+                    
+                    // Extract the data we need
+                    const bookingId = booking.booking_id;
+                    const customerName = booking.Username || 'Unknown Customer';
+                    const serviceType = booking.service_type || 'Unknown Service';
+                    const bookingDate = booking.booking_date || 'Unknown Date';
+                    const servicePrice = parseFloat(booking.service_price) || 0;
+                    
+                    option.textContent = `#${bookingId} - ${customerName} - ${serviceType} (${bookingDate})`;
+                    option.setAttribute('data-booking-id', bookingId);
+                    option.setAttribute('data-customer-name', customerName);
+                    option.setAttribute('data-customer-phone', booking.Phone || '');
+                    option.setAttribute('data-customer-email', booking.email || '');
+                    option.setAttribute('data-service-type', serviceType);
+                    option.setAttribute('data-service-price', servicePrice);
+                    
+                    select.appendChild(option);
                 });
                 
-                if (res.success) {
-                    slots = res.data || [];
-                    renderSlots();
-                }
-            } catch (e) { console.error(e); }
+                console.log(`Loaded ${res.data.length} billable bookings`);
+            } else {
+                console.log('No billable bookings found');
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'No billable bookings available';
+                option.disabled = true;
+                select.appendChild(option);
+            }
+        } catch (error) {
+            console.error('Error loading billable bookings:', error);
+            const select = document.getElementById('billBooking');
+            select.innerHTML = '<option value="">Error loading bookings</option>';
+        }
+    }
+
+    async function loadBookingDetails() {
+        const select = document.getElementById('billBooking');
+        const selectedOption = select.selectedOptions[0];
+        const bookingId = select.value;
+        
+        console.log('Selected booking ID:', bookingId);
+        console.log('Selected option data:', selectedOption ? {
+            customerName: selectedOption.getAttribute('data-customer-name'),
+            customerPhone: selectedOption.getAttribute('data-customer-phone'),
+            serviceType: selectedOption.getAttribute('data-service-type'),
+            servicePrice: selectedOption.getAttribute('data-service-price')
+        } : 'No option selected');
+        
+        if (!bookingId || !selectedOption) {
+            clearBookingDetails();
+            return;
         }
 
-        function renderSlots() {
-            const tbody = document.getElementById('slotsTable');
-            tbody.innerHTML = slots.map(slot => `
-                <tr>
-                    <td>${slot.slot_id}</td>
-                    <td>${slot.slot_date}</td>
-                    <td>${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}</td>
-                    <td>${slot.max_capacity}</td>
-                    <td>${slot.current_bookings || 0}</td>
-                    <td>${slot.max_capacity - (slot.current_bookings || 0)}</td>
-                    <td>
-                        <span class="status-badge status-${(slot.S_status || 'Available').toLowerCase().replace(' ', '-')}">
-                            ${slot.S_status || 'Available'}
-                        </span>
-                    </td>
-                    <td>
-                        <select class="form-control" onchange="updateSlotStatus(${slot.slot_id}, this.value)" style="display:inline-block; width:auto;">
-                            <option value="Available" ${(slot.S_status || 'Available') === 'Available' ? 'selected' : ''}>Available</option>
-                            <option value="Blocked" ${(slot.S_status || 'Available') === 'Blocked' ? 'selected' : ''}>Blocked</option>
-                        </select>
-                        <button class="btn btn-danger btn-sm" onclick="deleteSlot(${slot.slot_id})">Delete</button>
-                    </td>
-                </tr>
-            `).join('');
+        // Immediately update form with data from dropdown (fast)
+        updateFormFromDropdown(selectedOption);
+        
+        // Then try to get more detailed information from server (if needed)
+        try {
+            const res = await postAction('getBookingDetails', { booking_id: parseInt(bookingId) });
+            console.log('Booking details API response:', res);
+            
+            if (res.success && res.data) {
+                currentBookingDetails = res.data;
+                // Update form with server data (more accurate)
+                updateBookingForm(res.data);
+            }
+        } catch (error) {
+            console.error('Error loading booking details from API:', error);
+            // We already have basic info from dropdown, so continue
         }
+        
+        updateBillPreview();
+    }
 
-        function formatTime(timeString) {
-            if (!timeString) return '';
-            const time = new Date('1970-01-01T' + timeString + 'Z');
-            return time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-        }
+    function updateFormFromDropdown(selectedOption) {
+        if (!selectedOption) return;
+        
+        const customerName = selectedOption.getAttribute('data-customer-name') || '';
+        const customerPhone = selectedOption.getAttribute('data-customer-phone') || '';
+        const serviceType = selectedOption.getAttribute('data-service-type') || '';
+        const servicePrice = parseFloat(selectedOption.getAttribute('data-service-price')) || 0;
+        
+        document.getElementById('billCustomerName').value = customerName;
+        document.getElementById('billCustomerPhone').value = customerPhone;
+        document.getElementById('billService').value = serviceType;
+        document.getElementById('billBasePrice').value = servicePrice.toFixed(2);
+        
+        console.log('Form updated from dropdown:', {
+            customerName,
+            customerPhone,
+            serviceType,
+            servicePrice
+        });
+    }
 
-        function showCreateSlotsModal() {
-            document.getElementById('createSlotsModal').classList.add('active');
-            // Set default dates
-            const today = new Date().toISOString().split('T')[0];
-            const nextWeek = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-            document.getElementById('slotStartDate').value = today;
-            document.getElementById('slotEndDate').value = nextWeek;
-        }
-
-        async function updateSlotStatus(slotId, newStatus) {
-            try {
-                const res = await postAction('updateSlotStatus', { 
-                    slotId: slotId, 
-                    status: newStatus 
-                });
-                
-                if (res.success) {
-                    loadSlots();
-                } else {
-                    alert(res.error || 'Failed to update slot status');
-                }
-            } catch (e) { console.error(e); }
-        }
-
-        async function deleteSlot(slotId) {
-            if (!confirm('Are you sure you want to delete this slot? This action cannot be undone.')) {
-                return;
+    function updateBookingForm(booking) {
+        if (booking) {
+            // Only update if we have better data from server
+            if (booking.customer_name && booking.customer_name !== 'Unknown Customer') {
+                document.getElementById('billCustomerName').value = booking.customer_name;
+            }
+            if (booking.Phone) {
+                document.getElementById('billCustomerPhone').value = booking.Phone;
+            }
+            if (booking.service_type && booking.service_type !== 'Unknown Service') {
+                document.getElementById('billService').value = booking.service_type;
+            }
+            if (booking.service_price && booking.service_price > 0) {
+                document.getElementById('billBasePrice').value = parseFloat(booking.service_price).toFixed(2);
             }
             
-            try {
-                const res = await postAction('deleteSlot', { slotId: slotId });
-                
-                if (res.success) {
-                    loadSlots();
-                } else {
-                    alert(res.error || 'Failed to delete slot');
-                }
-            } catch (e) { console.error(e); }
+            console.log('Form updated from API:', booking);
         }
+    }
 
-        // Bills functions
-        async function loadBillBookings(){
-            const res = await postAction('getBookings', { limit: 100 });
-            if (res.success) bookings = res.data || [];
-            const sel = document.getElementById('billBooking');
-            sel.innerHTML = '<option value="">Select a booking</option>' + 
-                bookings.filter(b=> (b.b_status||b.status)==='completed')
-                .map(b=>`<option value="${b.booking_id||b.id}">${b.booking_id||b.id} - ${b.Username||b.customer} - ${b.service_type||b.service}</option>`)
-                .join('');
-            billItems = [];
-            document.getElementById('additionalItems').innerHTML = '';
-            updateBillPreview();
+    function clearBookingDetails() {
+        currentBookingDetails = null;
+        document.getElementById('billCustomerName').value = '';
+        document.getElementById('billCustomerPhone').value = '';
+        document.getElementById('billService').value = '';
+        document.getElementById('billBasePrice').value = '';
+        document.getElementById('additionalItems').innerHTML = '';
+        additionalItems = [];
+        document.getElementById('billPreviewContent').innerHTML = '<p class="text-muted">Select a booking to preview bill</p>';
+    }
+
+    function addBillItem() {
+        const itemId = Date.now();
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'form-grid bill-item';
+        itemDiv.setAttribute('data-item-id', itemId);
+        itemDiv.innerHTML = `
+            <div class="form-group">
+                <label>Item Description *</label>
+                <input type="text" class="form-control bill-item-desc" placeholder="e.g., Additional parts, Labor charges..." required oninput="updateBillItem(${itemId})">
+            </div>
+            <div class="form-group">
+                <label>Amount (₹) *</label>
+                <input type="number" class="form-control bill-item-amount" placeholder="0.00" min="0" step="0.01" required oninput="updateBillItem(${itemId})">
+            </div>
+            <div class="form-group" style="display:flex;align-items:end;">
+                <button type="button" class="btn btn-danger btn-sm" onclick="removeBillItem(${itemId})" title="Remove item">
+                    <i class="fa fa-trash"></i> Remove
+                </button>
+            </div>
+        `;
+        document.getElementById('additionalItems').appendChild(itemDiv);
+        
+        // Add to items array
+        additionalItems.push({
+            id: itemId,
+            description: '',
+            amount: 0
+        });
+        
+        updateBillPreview();
+    }
+
+    function updateBillItem(itemId) {
+        const itemDiv = document.querySelector(`.bill-item[data-item-id="${itemId}"]`);
+        if (!itemDiv) return;
+        
+        const description = itemDiv.querySelector('.bill-item-desc').value;
+        const amount = parseFloat(itemDiv.querySelector('.bill-item-amount').value) || 0;
+        
+        const itemIndex = additionalItems.findIndex(item => item.id === itemId);
+        if (itemIndex !== -1) {
+            additionalItems[itemIndex] = {
+                ...additionalItems[itemIndex],
+                description: description,
+                amount: amount
+            };
         }
+        
+        updateBillPreview();
+    }
 
-        // Modal functions
-        function showAddUserModal() {
-            document.getElementById('userModalTitle').textContent = 'Add New User';
-            document.getElementById('editUserId').value = '';
-            document.getElementById('userName').value = '';
-            document.getElementById('userEmail').value = '';
-            document.getElementById('userPhone').value = '';
-            document.getElementById('userPassword').value = '';
-            document.getElementById('userRole').value = 'customer';
-            document.getElementById('userModal').classList.add('active');
+    function removeBillItem(itemId) {
+        const itemDiv = document.querySelector(`.bill-item[data-item-id="${itemId}"]`);
+        if (itemDiv) {
+            itemDiv.remove();
         }
+        
+        additionalItems = additionalItems.filter(item => item.id !== itemId);
+        updateBillPreview();
+    }
 
-        function showAddServiceModal() {
-            document.getElementById('serviceModalTitle').textContent = 'Add New Service';
-            document.getElementById('editServiceId').value = '';
-            document.getElementById('serviceName').value = '';
-            document.getElementById('serviceDescription').value = '';
-            document.getElementById('servicePrice').value = '';
-            document.getElementById('serviceDuration').value = '';
-            document.getElementById('serviceModal').classList.add('active');
-        }
-
-        // Bill functions
-        async function loadBookingDetails() {
-            const bookingId = document.getElementById('billBooking').value;
-            if (!bookingId) {
-                document.getElementById('billCustomerName').value = '';
-                document.getElementById('billService').value = '';
-                document.getElementById('billPreview').innerHTML = '';
-                return;
-            }
-
-       
-                const res = await postAction('getBookingDetails', { bookingId });
-                if (res.success) {
-                    document.getElementById('billCustomerName').value = res.data.customer_name;
-                    document.getElementById('billService').value = res.data.service_name;
-                    updateBillPreview();
-                }
-            }
-
-        function addBillItem() {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'form-grid';
-            itemDiv.style.marginBottom = '10px';
-            itemDiv.innerHTML = `
-                <div class="form-group">
-                    <label>Item Description</label>
-                    <input type="text" class="bill-item-desc" oninput="updateBillPreview()" required>
-                </div>
-                <div class="form-group">
-                    <label>Amount (₹)</label>
-                    <input type="number" class="bill-item-amount" oninput="updateBillPreview()" required min="0" step="0.01">
-                </div>
-                <div class="form-group" style="justify-content:flex-end">
-                    <button type="button" class="btn btn-danger" onclick="this.closest('.form-grid').remove(); updateBillPreview();">Remove</button>
-                </div>
-            `;
-            document.getElementById('additionalItems').appendChild(itemDiv);
-            updateBillPreview();
-        }
-
-        function updateBillPreview() {
-            const bookingId = document.getElementById('billBooking').value;
-            if (!bookingId) return;
-
-            const additionalItems = Array.from(document.querySelectorAll('.form-grid')).map(grid => ({
-                description: grid.querySelector('.bill-item-desc')?.value || '',
-                amount: parseFloat(grid.querySelector('.bill-item-amount')?.value || 0)
-            })).filter(item => item.description && item.amount);
-
-            const preview = document.getElementById('billPreview');
-            preview.innerHTML = `
-                <div class="bill-row">
-                    <strong>Service:</strong>
-                    <span>${document.getElementById('billService').value}</span>
-                </div>
-                ${additionalItems.map(item => `
+    function updateBillPreview() {
+        const basePrice = parseFloat(document.getElementById('billBasePrice').value) || 0;
+        const customerName = document.getElementById('billCustomerName').value;
+        const serviceType = document.getElementById('billService').value;
+        const additionalTotal = additionalItems.reduce((sum, item) => sum + (parseFloat(item.amount) || 0), 0);
+        const totalAmount = basePrice + additionalTotal;
+        
+        let previewHTML = '';
+        
+        if (customerName && serviceType) {
+            previewHTML = `
+                <div class="bill-details">
                     <div class="bill-row">
-                        <span>${item.description}</span>
-                        <span>₹${item.amount.toFixed(2)}</span>
+                        <strong>Customer:</strong>
+                        <span>${customerName}</span>
                     </div>
-                `).join('')}
+                    <div class="bill-row">
+                        <strong>Service:</strong>
+                        <span>${serviceType}</span>
+                    </div>
+                    <div class="bill-row" style="border-top: 1px solid #ddd; padding-top: 10px; margin-top: 10px;">
+                        <strong>Base Service Charge:</strong>
+                        <span>₹${basePrice.toFixed(2)}</span>
+                    </div>
+            `;
+            
+            // Show additional items
+            const validAdditionalItems = additionalItems.filter(item => item.description && item.amount > 0);
+            if (validAdditionalItems.length > 0) {
+                previewHTML += `<div style="margin-top:10px;"><strong>Additional Charges:</strong></div>`;
+                validAdditionalItems.forEach(item => {
+                    previewHTML += `
+                        <div class="bill-row" style="padding-left:20px;">
+                            <span>${item.description}</span>
+                            <span>₹${parseFloat(item.amount).toFixed(2)}</span>
+                        </div>
+                    `;
+                });
+            }
+            
+            previewHTML += `
                 <div class="bill-total">
                     <strong>Total Amount:</strong>
-                    <strong>₹${additionalItems.reduce((sum, item) => sum + item.amount, 0).toFixed(2)}</strong>
+                    <strong>₹${totalAmount.toFixed(2)}</strong>
                 </div>
+            </div>
             `;
+        } else {
+            previewHTML = '<p class="text-muted">Select a booking to preview bill</p>';
         }
+        
+        document.getElementById('billPreviewContent').innerHTML = previewHTML;
+    }
 
-        async function generateBill() {
-            const bookingId = document.getElementById('billBooking').value;
-            if (!bookingId) {
-                alert('Please select a booking first');
+    async function generateBill() {
+        const bookingId = document.getElementById('billBooking').value;
+        const basePrice = parseFloat(document.getElementById('billBasePrice').value) || 0;
+        
+        if (!bookingId) {
+            alert('❌ Please select a booking first');
+            return;
+        }
+        
+        if (basePrice === 0) {
+            const confirmZero = confirm('⚠️ The base service price is ₹0.00. Are you sure you want to continue?');
+            if (!confirmZero) {
                 return;
             }
-
-            const additionalItems = Array.from(document.querySelectorAll('.form-grid')).map(grid => ({
-                description: grid.querySelector('.bill-item-desc')?.value || '',
-                amount: parseFloat(grid.querySelector('.bill-item-amount')?.value || 0)
-            })).filter(item => item.description && item.amount);
-
-            try {
-                const res = await postAction('generateBill', {
-                    bookingId,
-                    items: additionalItems
-                });
-
-                if (res.success) {
-                    alert('Bill generated successfully!');
-                    // window.open(`print_bill.php?bill_id=${res.data.bill_id}`, '_blank');
-                } else {
-                    alert(res.error || 'Failed to generate bill');
-                }
-            } catch (e) {
-                console.error(e);
-                alert('Error generating bill');
-            }
         }
-
-        async function exportReport() {
-            alert('PDF export functionality would be implemented here');
-            // This would typically generate a PDF file for download
-        }
-
-        // Form handlers
-        document.getElementById('userForm').addEventListener('submit', async function(e){ 
-            e.preventDefault(); 
-            const id = document.getElementById('editUserId').value; 
-            const payload = { 
-                name: document.getElementById('userName').value, 
-                email: document.getElementById('userEmail').value, 
-                phone: document.getElementById('userPhone').value,
-                password: document.getElementById('userPassword').value
-            }; 
-            if(id) payload.id = id; 
-            const action = id ? 'updateUser' : 'addUser'; 
-            const res = await postAction(action, payload); 
-            if(res.success){ 
-                document.getElementById('userModal').classList.remove('active'); 
-                loadUsers(); 
-            } else alert(res.error || 'Error'); 
-        });
-
-        document.getElementById('serviceForm').addEventListener('submit', async function(e){ 
-            e.preventDefault(); 
-            const id = document.getElementById('editServiceId').value; 
-            const payload = { 
-                name: document.getElementById('serviceName').value, 
-                description: document.getElementById('serviceDescription').value, 
-                price: parseFloat(document.getElementById('servicePrice').value)||0, 
-                duration: parseFloat(document.getElementById('serviceDuration').value)||0 
-            }; 
-            if(id) payload.id = id; 
-            const action = id ? 'updateService' : 'addService'; 
-            const res = await postAction(action, payload); 
-            if(res.success){ 
-                document.getElementById('serviceModal').classList.remove('active'); 
-                loadServices(); 
-            } else alert(res.error || 'Error'); 
-        });
-
-        document.getElementById('createSlotsForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        
+        // Filter out empty items
+        const validItems = additionalItems.filter(item => item.description && item.amount > 0);
+        
+        const generateBtn = document.getElementById('generateBillBtn');
+        const originalText = generateBtn.innerHTML;
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Generating Bill...';
+        
+        try {
+            console.log('Generating bill for booking:', bookingId, 'with items:', validItems);
             
-            const payload = {
-                startDate: document.getElementById('slotStartDate').value,
-                endDate: document.getElementById('slotEndDate').value,
-                startTime: document.getElementById('slotStartTime').value,
-                endTime: document.getElementById('slotEndTime').value,
-                duration: parseInt(document.getElementById('slotDuration').value),
-                capacity: parseInt(document.getElementById('slotCapacity').value)
-            };
+            const res = await postAction('generateBill', {
+                bookingId: parseInt(bookingId),
+                items: validItems
+            });
             
-            try {
-                const res = await postAction('createSlots', payload);
-                
-                if (res.success) {
-                    alert('Slots created successfully!');
-                    document.getElementById('createSlotsModal').classList.remove('active');
-                    loadSlots();
-                } else {
-                    alert(res.error || 'Failed to create slots');
-                }
-            } catch (e) {
-                console.error(e);
-                alert('Error creating slots');
-            }
-        });
-
-        function closeModal(modalId){ 
-            document.getElementById(modalId).classList.remove('active'); 
-        }
-
-        // Edit functions
-        function showEditUser(userId) {
-            const user = users.find(u => u.id == userId);
-            if (user) {
-                document.getElementById('userModalTitle').textContent = 'Edit User';
-                document.getElementById('editUserId').value = user.id;
-                document.getElementById('userName').value = user.name;
-                document.getElementById('userEmail').value = user.email;
-                document.getElementById('userPhone').value = user.phone;
-                document.getElementById('userPassword').value = ''; // Don't show password
-                document.getElementById('userRole').value = user.role;
-                document.getElementById('userModal').classList.add('active');
-            }
-        }
-
-        function showEditService(serviceId) {
-            const service = services.find(s => (s.id || s.Service_id) == serviceId);
-            if (service) {
-                document.getElementById('serviceModalTitle').textContent = 'Edit Service';
-                document.getElementById('editServiceId').value = service.id || service.Service_id;
-                document.getElementById('serviceName').value = service.name || service.service_type;
-                document.getElementById('serviceDescription').value = service.description;
-                document.getElementById('servicePrice').value = service.price;
-                document.getElementById('serviceDuration').value = service.duration || service.Estimated_duration;
-                document.getElementById('serviceModal').classList.add('active');
-            }
-        }
-
-        async function deleteUser(userId) {
-            if (!confirm('Are you sure you want to delete this user?')) return;
+            console.log('Bill generation response:', res);
             
-            const res = await postAction('deleteUser', { id: userId });
             if (res.success) {
-                loadUsers();
+                alert(`✅ Bill generated successfully!\n\n📄 Bill Number: ${res.data.bill_number}\n💰 Total Amount: ₹${res.data.total_amount.toFixed(2)}\n\nThe bill has been saved to the database.`);
+                clearBillForm();
+                await loadBillableBookings(); // Refresh the list
             } else {
-                alert(res.error || 'Failed to delete user');
+                alert('❌ Error generating bill: ' + (res.error || 'Unknown error'));
             }
+        } catch (error) {
+            console.error('Error generating bill:', error);
+            alert('❌ Network error generating bill. Please check your connection and try again.');
+        } finally {
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = originalText;
         }
+    }
 
-        async function deleteService(serviceId) {
-            if (!confirm('Are you sure you want to delete this service?')) return;
+    function clearBillForm() {
+        document.getElementById('billBooking').value = '';
+        document.getElementById('additionalItems').innerHTML = '';
+        additionalItems = [];
+        clearBookingDetails();
+    }
+
+    async function exportReport() {
+        alert('PDF export functionality would be implemented here');
+        // This would typically generate a PDF file for download
+    }
+
+    // Form handlers
+    document.getElementById('userForm').addEventListener('submit', async function(e){ 
+        e.preventDefault(); 
+        const id = document.getElementById('editUserId').value; 
+        const payload = { 
+            name: document.getElementById('userName').value, 
+            email: document.getElementById('userEmail').value, 
+            phone: document.getElementById('userPhone').value,
+            password: document.getElementById('userPassword').value
+        }; 
+        if(id) payload.id = id; 
+        const action = id ? 'updateUser' : 'addUser'; 
+        const res = await postAction(action, payload); 
+        if(res.success){ 
+            document.getElementById('userModal').classList.remove('active'); 
+            loadUsers(); 
+        } else alert(res.error || 'Error'); 
+    });
+
+    document.getElementById('serviceForm').addEventListener('submit', async function(e){ 
+        e.preventDefault(); 
+        const id = document.getElementById('editServiceId').value; 
+        const payload = { 
+            name: document.getElementById('serviceName').value, 
+            description: document.getElementById('serviceDescription').value, 
+            price: parseFloat(document.getElementById('servicePrice').value)||0, 
+            duration: parseFloat(document.getElementById('serviceDuration').value)||0 
+        }; 
+        if(id) payload.id = id; 
+        const action = id ? 'updateService' : 'addService'; 
+        const res = await postAction(action, payload); 
+        if(res.success){ 
+            document.getElementById('serviceModal').classList.remove('active'); 
+            loadServices(); 
+        } else alert(res.error || 'Error'); 
+    });
+
+    document.getElementById('createSlotsForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const payload = {
+            startDate: document.getElementById('slotStartDate').value,
+            endDate: document.getElementById('slotEndDate').value,
+            startTime: document.getElementById('slotStartTime').value,
+            endTime: document.getElementById('slotEndTime').value,
+            duration: parseInt(document.getElementById('slotDuration').value),
+            capacity: parseInt(document.getElementById('slotCapacity').value)
+        };
+        
+        try {
+            const res = await postAction('createSlots', payload);
             
-            const res = await postAction('deleteService', { id: serviceId });
             if (res.success) {
-                loadServices();
+                alert('Slots created successfully!');
+                document.getElementById('createSlotsModal').classList.remove('active');
+                loadSlots();
             } else {
-                alert(res.error || 'Failed to delete service');
+                alert(res.error || 'Failed to create slots');
             }
+        } catch (e) {
+            console.error(e);
+            alert('Error creating slots');
         }
+    });
 
-        // Initialize
-        loadDashboard();
-        loadUsers(); 
-        loadServices();
-        loadSlots();
-        loadBillBookings();
-    </script>
+    function closeModal(modalId){ 
+        document.getElementById(modalId).classList.remove('active'); 
+    }
+
+    // Edit functions
+    function showEditUser(userId) {
+        const user = users.find(u => u.id == userId);
+        if (user) {
+            document.getElementById('userModalTitle').textContent = 'Edit User';
+            document.getElementById('editUserId').value = user.id;
+            document.getElementById('userName').value = user.name;
+            document.getElementById('userEmail').value = user.email;
+            document.getElementById('userPhone').value = user.phone;
+            document.getElementById('userPassword').value = ''; // Don't show password
+            document.getElementById('userRole').value = user.role;
+            document.getElementById('userModal').classList.add('active');
+        }
+    }
+
+    function showEditService(serviceId) {
+        const service = services.find(s => (s.id || s.Service_id) == serviceId);
+        if (service) {
+            document.getElementById('serviceModalTitle').textContent = 'Edit Service';
+            document.getElementById('editServiceId').value = service.id || service.Service_id;
+            document.getElementById('serviceName').value = service.name || service.service_type;
+            document.getElementById('serviceDescription').value = service.description;
+            document.getElementById('servicePrice').value = service.price;
+            document.getElementById('serviceDuration').value = service.duration || service.Estimated_duration;
+            document.getElementById('serviceModal').classList.add('active');
+        }
+    }
+
+    async function deleteUser(userId) {
+        if (!confirm('Are you sure you want to delete this user?')) return;
+        
+        const res = await postAction('deleteUser', { id: userId });
+        if (res.success) {
+            loadUsers();
+        } else {
+            alert(res.error || 'Failed to delete user');
+        }
+    }
+
+    async function deleteService(serviceId) {
+        if (!confirm('Are you sure you want to delete this service?')) return;
+        
+        const res = await postAction('deleteService', { id: serviceId });
+        if (res.success) {
+            loadServices();
+        } else {
+            alert(res.error || 'Failed to delete service');
+        }
+    }
+
+    // Initialize
+    loadDashboard();
+    loadUsers(); 
+    loadServices();
+    loadSlots();
+</script>
 </body>
 </html>

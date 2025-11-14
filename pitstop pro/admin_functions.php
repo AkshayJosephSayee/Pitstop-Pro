@@ -388,50 +388,198 @@ function deleteService($id) {
     }
 }
 
-function generateBill($bookingId, $items) {
+// Add these functions to admin_functions.php
+
+
+// Add to admin_functions.php - Debug function
+function getServicePrice($serviceType) {
+    global $conn;
+    try {
+        $sql = "SELECT price FROM tbl_services WHERE service_type = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $serviceType);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['price'];
+        }
+        return 0;
+    } catch (Exception $e) {
+        error_log("Error in getServicePrice: " . $e->getMessage());
+        return 0;
+    }
+}
+
+// Update the getBillableBookings function to ensure we get prices
+function getBillableBookings() {
+    global $conn;
+    try {
+        $sql = "SELECT b.booking_id, b.Username, b.email, b.Phone, b.service_type, 
+                       b.booking_date, b.b_status, 
+                       COALESCE(s.price, 0) as service_price
+                FROM tbl_bookings b
+                LEFT JOIN tbl_services s ON b.service_type = s.service_type
+                WHERE b.b_status IN ('completed', 'confirmed', 'pending')
+                AND b.booking_id NOT IN (
+                    SELECT booking_id FROM tbl_bill WHERE booking_id IS NOT NULL
+                )
+                ORDER BY b.booking_date DESC, b.booking_id DESC";
+                
+        $result = $conn->query($sql);
+        
+        if (!$result) {
+            throw new Exception("Query failed: " . $conn->error);
+        }
+        
+        $bookings = [];
+        while ($row = $result->fetch_assoc()) {
+            // If service price is 0, try to get it from services table
+            if (empty($row['service_price']) || $row['service_price'] == 0) {
+                $row['service_price'] = getServicePrice($row['service_type']);
+            }
+            $bookings[] = $row;
+        }
+        return $bookings;
+    } catch (Exception $e) {
+        error_log("Error in getBillableBookings: " . $e->getMessage());
+        return [];
+    }
+}
+
+function getBookingDetails($bookingId) {
+    global $conn;
+    try {
+        $sql = "SELECT b.booking_id, b.Username as customer_name, b.email, b.Phone, 
+                       b.service_type, b.booking_date, s.price as service_price,
+                       b.special_request
+                FROM tbl_bookings b
+                LEFT JOIN tbl_services s ON b.service_type = s.service_type
+                WHERE b.booking_id = ?";
+                
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
+        }
+        
+        $stmt->bind_param("i", $bookingId);
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
+        }
+        
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in getBookingDetails: " . $e->getMessage());
+        return null;
+    }
+}
+
+function generateBillNumber() {
+    return 'BIL' . date('Ymd') . rand(1000, 9999);
+}
+
+function createBill($bookingId, $customerName, $serviceType, $totalAmount) {
     global $conn;
     
     try {
-        $conn->begin_transaction();
+        // Generate bill number
+        $billNumber = generateBillNumber();
         
-        // Get booking details
-        $sql = "SELECT service_type FROM tbl_bookings WHERE booking_id = ?";
+        // Simple insert for your tbl_bill structure
+        $sql = "INSERT INTO tbl_bill (booking_id, bill_number, customer_name, service_type, total_amount, Payment_status) 
+                VALUES (?, ?, ?, ?, ?, 'pending')";
+        
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $bookingId);
-        $stmt->execute();
-        $booking = $stmt->get_result()->fetch_assoc();
-        
-        if (!$booking) {
-            throw new Exception("Booking not found");
+        if (!$stmt) {
+            throw new Exception("Prepare failed: " . $conn->error);
         }
         
-        // Get service price
-        $stmt = $conn->prepare("SELECT price FROM tbl_services WHERE service_type = ?");
-        $stmt->bind_param("s", $booking['service_type']);
-        $stmt->execute();
-        $service = $stmt->get_result()->fetch_assoc();
+        $stmt->bind_param("isssd", $bookingId, $billNumber, $customerName, $serviceType, $totalAmount);
         
-        $basePrice = $service ? $service['price'] : 0;
-        
-        // Calculate total with additional items
-        $totalAmount = $basePrice;
-        foreach ($items as $item) {
-            $totalAmount += $item['amount'];
+        if (!$stmt->execute()) {
+            throw new Exception("Execute failed: " . $stmt->error);
         }
-        
-        // Create bill
-        $sql = "INSERT INTO tbl_bill (booking_id, total_amount, Payment_status) VALUES (?, ?, 'not paid')";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("id", $bookingId, $totalAmount);
-        $stmt->execute();
         
         $billId = $conn->insert_id;
         
-        $conn->commit();
-        return ['success' => true, 'bill_id' => $billId, 'total' => $totalAmount];
+        return [
+            'success' => true, 
+            'bill_id' => $billId,
+            'bill_number' => $billNumber,
+            'total_amount' => $totalAmount
+        ];
+        
     } catch (Exception $e) {
-        $conn->rollback();
+        error_log("Error in createBill: " . $e->getMessage());
         return ['success' => false, 'error' => $e->getMessage()];
+    }
+}
+
+// Debug function to check what's in the bookings table
+function debugBookings() {
+    global $conn;
+    try {
+        $sql = "SELECT COUNT(*) as total_bookings FROM tbl_bookings";
+        $result = $conn->query($sql);
+        $total = $result->fetch_assoc()['total_bookings'];
+        
+        $sql2 = "SELECT booking_id, Username, service_type, b_status FROM tbl_bookings LIMIT 5";
+        $result2 = $conn->query($sql2);
+        $sample = [];
+        while ($row = $result2->fetch_assoc()) {
+            $sample[] = $row;
+        }
+        
+        return [
+            'total_bookings' => $total,
+            'sample_data' => $sample
+        ];
+    } catch (Exception $e) {
+        return ['error' => $e->getMessage()];
+    }
+}
+
+function getBillDetails($billId) {
+    global $conn;
+    try {
+        $sql = "SELECT b.*, bk.booking_date, bk.special_request
+                FROM tbl_bill b
+                LEFT JOIN tbl_bookings bk ON b.booking_id = bk.booking_id
+                WHERE b.bill_id = ?";
+                
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $billId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        return $result->fetch_assoc();
+    } catch (Exception $e) {
+        error_log("Error in getBillDetails: " . $e->getMessage());
+        return null;
+    }
+}
+
+
+
+function getBillItems($billId) {
+    global $conn;
+    try {
+        $sql = "SELECT * FROM tbl_bill_items WHERE bill_id = ? ORDER BY item_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $billId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $items = [];
+        while ($row = $result->fetch_assoc()) {
+            $items[] = $row;
+        }
+        return $items;
+    } catch (Exception $e) {
+        error_log("Error in getBillItems: " . $e->getMessage());
+        return [];
     }
 }
 ?>
