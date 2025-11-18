@@ -27,4 +27,13 @@ $conn->set_charset("utf8mb4");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+// Debug function to check connection
+function checkDBConnection() {
+    global $conn;
+    if ($conn->connect_error) {
+        return "Connection failed: " . $conn->connect_error;
+    }
+    return "Connection successful";
+}
 ?>

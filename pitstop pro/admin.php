@@ -95,7 +95,27 @@ $allSlots = getAllSlots();
 .bill-summary {
     margin-top: 20px;
 }
-
+@media print {
+    .header, .nav-tabs, .bill-actions, .no-print {
+        display: none !important;
+    }
+    
+    .tab-content {
+        display: block !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+    
+    .bill-preview {
+        border: 2px solid #000 !important;
+        box-shadow: none !important;
+    }
+}
 .bill-actions {
     display: flex;
     gap: 10px;
@@ -706,45 +726,49 @@ $allSlots = getAllSlots();
         }
     }
 
-    async function loadBookingDetails() {
-        const select = document.getElementById('billBooking');
-        const selectedOption = select.selectedOptions[0];
-        const bookingId = select.value;
-        
-        console.log('Selected booking ID:', bookingId);
-        console.log('Selected option data:', selectedOption ? {
-            customerName: selectedOption.getAttribute('data-customer-name'),
-            customerPhone: selectedOption.getAttribute('data-customer-phone'),
-            serviceType: selectedOption.getAttribute('data-service-type'),
-            servicePrice: selectedOption.getAttribute('data-service-price')
-        } : 'No option selected');
-        
-        if (!bookingId || !selectedOption) {
-            clearBookingDetails();
-            return;
-        }
-
-        // Immediately update form with data from dropdown (fast)
-        updateFormFromDropdown(selectedOption);
-        
-        // Then try to get more detailed information from server (if needed)
-        try {
-            const res = await postAction('getBookingDetails', { booking_id: parseInt(bookingId) });
-            console.log('Booking details API response:', res);
-            
-            if (res.success && res.data) {
-                currentBookingDetails = res.data;
-                // Update form with server data (more accurate)
-                updateBookingForm(res.data);
-            }
-        } catch (error) {
-            console.error('Error loading booking details from API:', error);
-            // We already have basic info from dropdown, so continue
-        }
-        
-        updateBillPreview();
+ async function loadBookingDetails() {
+    const select = document.getElementById('billBooking');
+    const selectedOption = select.selectedOptions[0];
+    const bookingId = select.value;
+    
+    console.log('Selected booking ID:', bookingId);
+    
+    if (!bookingId || !selectedOption) {
+        clearBookingDetails();
+        return;
     }
 
+    // Immediately update form with data from dropdown (fast)
+    updateFormFromDropdown(selectedOption);
+    
+    // Then try to get more detailed information from server
+    try {
+        console.log('Calling getBookingDetails API with booking_id:', bookingId);
+        
+        const res = await postAction('getBookingDetails', { booking_id: parseInt(bookingId) });
+        console.log('Booking details API response:', res);
+        
+        if (res.success && res.data) {
+            currentBookingDetails = res.data;
+            console.log('Received booking details:', res.data);
+            
+            // Update form with server data
+            updateBookingForm(res.data);
+        } else {
+            console.error('Failed to load booking details:', res.error);
+            // Show error but keep the dropdown data
+            document.getElementById('billPreviewContent').innerHTML = 
+                '<div class="alert alert-warning">Basic details loaded. Some details unavailable: ' + (res.error || 'Unknown error') + '</div>';
+        }
+    } catch (error) {
+        console.error('Error loading booking details from API:', error);
+        // Show error but keep the dropdown data
+        document.getElementById('billPreviewContent').innerHTML = 
+            '<div class="alert alert-warning">Basic details loaded. Network error loading additional details.</div>';
+    }
+    
+    updateBillPreview();
+}
     function updateFormFromDropdown(selectedOption) {
         if (!selectedOption) return;
         
@@ -912,55 +936,84 @@ $allSlots = getAllSlots();
         document.getElementById('billPreviewContent').innerHTML = previewHTML;
     }
 
-    async function generateBill() {
-        const bookingId = document.getElementById('billBooking').value;
-        const basePrice = parseFloat(document.getElementById('billBasePrice').value) || 0;
-        
-        if (!bookingId) {
-            alert('❌ Please select a booking first');
+   async function generateBill() {
+    const bookingId = document.getElementById('billBooking').value;
+    const basePrice = parseFloat(document.getElementById('billBasePrice').value) || 0;
+    
+    if (!bookingId) {
+        alert('❌ Please select a booking first');
+        return;
+    }
+    
+    if (basePrice === 0) {
+        const confirmZero = confirm('⚠️ The base service price is ₹0.00. Are you sure you want to continue?');
+        if (!confirmZero) {
             return;
         }
-        
-        if (basePrice === 0) {
-            const confirmZero = confirm('⚠️ The base service price is ₹0.00. Are you sure you want to continue?');
-            if (!confirmZero) {
-                return;
-            }
-        }
-        
-        // Filter out empty items
-        const validItems = additionalItems.filter(item => item.description && item.amount > 0);
-        
-        const generateBtn = document.getElementById('generateBillBtn');
-        const originalText = generateBtn.innerHTML;
-        generateBtn.disabled = true;
-        generateBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Generating Bill...';
-        
-        try {
-            console.log('Generating bill for booking:', bookingId, 'with items:', validItems);
-            
-            const res = await postAction('generateBill', {
-                bookingId: parseInt(bookingId),
-                items: validItems
-            });
-            
-            console.log('Bill generation response:', res);
-            
-            if (res.success) {
-                alert(`✅ Bill generated successfully!\n\n📄 Bill Number: ${res.data.bill_number}\n💰 Total Amount: ₹${res.data.total_amount.toFixed(2)}\n\nThe bill has been saved to the database.`);
-                clearBillForm();
-                await loadBillableBookings(); // Refresh the list
-            } else {
-                alert('❌ Error generating bill: ' + (res.error || 'Unknown error'));
-            }
-        } catch (error) {
-            console.error('Error generating bill:', error);
-            alert('❌ Network error generating bill. Please check your connection and try again.');
-        } finally {
-            generateBtn.disabled = false;
-            generateBtn.innerHTML = originalText;
-        }
     }
+    
+    // Filter out empty items
+    const validItems = additionalItems.filter(item => item.description && item.amount > 0);
+    
+    const generateBtn = document.getElementById('generateBillBtn');
+    const originalText = generateBtn.innerHTML;
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Generating Bill...';
+    
+    try {
+        console.log('Generating bill for booking:', bookingId, 'with items:', validItems);
+        
+        const res = await postAction('generateBill', {
+            bookingId: parseInt(bookingId),
+            items: validItems
+        });
+        
+        console.log('Bill generation response:', res);
+        
+        if (res.success) {
+            // After generating bill successfully, print it
+            await printGeneratedBill(res.data.bill_id);
+            
+            alert(`✅ Bill generated successfully!\n\n📄 Bill Number: ${res.data.bill_number}\n💰 Total Amount: ₹${res.data.total_amount.toFixed(2)}\n\nThe bill has been saved to the database and a print window has been opened.`);
+            clearBillForm();
+            await loadBillableBookings(); // Refresh the list
+        } else {
+            alert('❌ Error generating bill: ' + (res.error || 'Unknown error'));
+        }
+    } catch (error) {
+        console.error('Error generating bill:', error);
+        alert('❌ Network error generating bill. Please check your connection and try again.');
+    } finally {
+        generateBtn.disabled = false;
+        generateBtn.innerHTML = originalText;
+    }
+}
+
+async function printGeneratedBill(billId) {
+    try {
+        const res = await postAction('printBill', { billId: billId });
+        
+        if (res.success) {
+            // Open print window with the bill HTML
+            const printWindow = window.open('', '_blank', 'width=800,height=600');
+            printWindow.document.write(res.html);
+            printWindow.document.close();
+            
+            // Wait for the window to load then trigger print
+            printWindow.onload = function() {
+                printWindow.focus();
+                printWindow.print();
+                // Don't close automatically - let user decide when to close
+            };
+        } else {
+            console.error('Error generating print bill:', res.error);
+            alert('Bill was generated but there was an error creating the print version.');
+        }
+    } catch (error) {
+        console.error('Error printing bill:', error);
+        alert('Bill was generated but there was an error opening the print window.');
+    }
+}
 
     function clearBillForm() {
         document.getElementById('billBooking').value = '';

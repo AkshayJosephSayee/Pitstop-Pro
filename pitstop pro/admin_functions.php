@@ -453,7 +453,7 @@ function getBookingDetails($bookingId) {
     try {
         $sql = "SELECT b.booking_id, b.Username as customer_name, b.email, b.Phone, 
                        b.service_type, b.booking_date, s.price as service_price,
-                       b.special_request
+                       b.special_request, b.b_status
                 FROM tbl_bookings b
                 LEFT JOIN tbl_services s ON b.service_type = s.service_type
                 WHERE b.booking_id = ?";
@@ -469,7 +469,14 @@ function getBookingDetails($bookingId) {
         }
         
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        $booking = $result->fetch_assoc();
+        
+        // If no service price found, try to get it from services table
+        if ($booking && (empty($booking['service_price']) || $booking['service_price'] == 0)) {
+            $booking['service_price'] = getServicePrice($booking['service_type']);
+        }
+        
+        return $booking;
     } catch (Exception $e) {
         error_log("Error in getBookingDetails: " . $e->getMessage());
         return null;
@@ -479,30 +486,172 @@ function getBookingDetails($bookingId) {
 function generateBillNumber() {
     return 'BIL' . date('Ymd') . rand(1000, 9999);
 }
+// Add this function to admin_functions.php
+function printBill($billId) {
+    global $conn;
+    
+    try {
+        // Get bill details
+        $billDetails = getBillDetails($billId);
+        if (!$billDetails) {
+            return ['success' => false, 'error' => 'Bill not found'];
+        }
+        
+        // Get booking details for additional info
+        $bookingDetails = getBookingDetails($billDetails['booking_id']);
+        
+        // Generate HTML for the printable bill
+        $html = generateBillHTML($billDetails, $bookingDetails);
+        
+        return [
+            'success' => true,
+            'html' => $html,
+            'bill_number' => $billDetails['bill_number']
+        ];
+        
+    } catch (Exception $e) {
+        error_log("Error in printBill: " . $e->getMessage());
+        return ['success' => false, 'error' => $e->getMessage()];
+    }
+}
+
+function generateBillHTML($billDetails, $bookingDetails) {
+    $billDate = date('d/m/Y', strtotime($billDetails['created_at'] ?? 'now'));
+    $bookingDate = $bookingDetails ? date('d/m/Y', strtotime($bookingDetails['booking_date'])) : 'N/A';
+    
+    return '
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Bill - ' . htmlspecialchars($billDetails['bill_number']) . '</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            .bill-header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
+            .bill-details { margin: 20px 0; }
+            .bill-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            .bill-table th, .bill-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            .bill-table th { background-color: #f2f2f2; }
+            .total-row { font-weight: bold; background-color: #f9f9f9; }
+            .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #666; }
+            @media print {
+                body { margin: 0; }
+                .no-print { display: none; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bill-header">
+            <h1>Pitstop Pro</h1>
+            <h2>Service Invoice</h2>
+            <p>Bill Number: ' . htmlspecialchars($billDetails['bill_number']) . '</p>
+            <p>Date: ' . $billDate . '</p>
+        </div>
+        
+        <div class="bill-details">
+            <table width="100%">
+                <tr>
+                    <td width="50%">
+                        <strong>Bill To:</strong><br>
+                        ' . htmlspecialchars($billDetails['customer_name']) . '<br>
+                        Service: ' . htmlspecialchars($billDetails['service_type']) . '<br>
+                        Booking Date: ' . $bookingDate . '
+                    </td>
+                    <td width="50%" style="text-align: right;">
+                        <strong>Status:</strong> ' . htmlspecialchars($billDetails['Payment_status']) . '<br>
+                        ' . ($bookingDetails && $bookingDetails['special_request'] ? 
+                            '<strong>Special Request:</strong><br>' . htmlspecialchars($bookingDetails['special_request']) : '') . '
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <table class="bill-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th width="100">Amount (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>' . htmlspecialchars($billDetails['service_type']) . ' Service</td>
+                    <td>₹' . number_format($billDetails['total_amount'], 2) . '</td>
+                </tr>
+                <tr class="total-row">
+                    <td><strong>Total Amount</strong></td>
+                    <td><strong>₹' . number_format($billDetails['total_amount'], 2) . '</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            <p>Thank you for choosing Pitstop Pro!</p>
+            <p>For any queries, contact us at: support@pitstoppro.com</p>
+            <p>This is a computer-generated bill.</p>
+        </div>
+        
+        <div class="no-print" style="margin-top: 20px; text-align: center;">
+            <button onclick="window.print()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Print Bill
+            </button>
+            <button onclick="window.close()" style="padding: 10px 20px; background: #6c757d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+                Close
+            </button>
+        </div>
+    </body>
+    </html>
+    ';
+}
 
 function createBill($bookingId, $customerName, $serviceType, $totalAmount) {
     global $conn;
     
     try {
-        // Generate bill number
-        $billNumber = generateBillNumber();
-        
-        // Simple insert for your tbl_bill structure
-        $sql = "INSERT INTO tbl_bill (booking_id, bill_number, customer_name, service_type, total_amount, Payment_status) 
-                VALUES (?, ?, ?, ?, ?, 'pending')";
-        
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Prepare failed: " . $conn->error);
+        // First, let's check the structure of tbl_bill
+        $checkTable = $conn->query("DESCRIBE tbl_bill");
+        $columns = [];
+        while ($row = $checkTable->fetch_assoc()) {
+            $columns[$row['Field']] = $row;
         }
         
-        $stmt->bind_param("isssd", $bookingId, $billNumber, $customerName, $serviceType, $totalAmount);
+        error_log("tbl_bill columns: " . print_r(array_keys($columns), true));
+        
+        // Check if bill_number column exists
+        $hasBillNumber = array_key_exists('bill_number', $columns);
+        
+        if ($hasBillNumber) {
+            // If bill_number column exists, use the original approach
+            $billNumber = generateBillNumber();
+            $sql = "INSERT INTO tbl_bill (booking_id, bill_number, customer_name, service_type, total_amount, Payment_status) 
+                    VALUES (?, ?, ?, ?, ?, 'pending')";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssd", $bookingId, $billNumber, $customerName, $serviceType, $totalAmount);
+        } else {
+            // If bill_number column doesn't exist, use auto-increment bill_id
+            $sql = "INSERT INTO tbl_bill (booking_id, customer_name, service_type, total_amount, Payment_status) 
+                    VALUES (?, ?, ?, ?, 'pending')";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issd", $bookingId, $customerName, $serviceType, $totalAmount);
+        }
         
         if (!$stmt->execute()) {
             throw new Exception("Execute failed: " . $stmt->error);
         }
         
         $billId = $conn->insert_id;
+        
+        // If no bill_number column, create a bill number from the bill_id
+        if (!$hasBillNumber) {
+            $billNumber = 'BIL' . str_pad($billId, 6, '0', STR_PAD_LEFT);
+            
+            // Update the record with the generated bill number if the column exists
+            if ($hasBillNumber) {
+                $updateSql = "UPDATE tbl_bill SET bill_number = ? WHERE bill_id = ?";
+                $updateStmt = $conn->prepare($updateSql);
+                $updateStmt->bind_param("si", $billNumber, $billId);
+                $updateStmt->execute();
+            }
+        }
         
         return [
             'success' => true, 

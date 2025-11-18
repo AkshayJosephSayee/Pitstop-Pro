@@ -315,3 +315,258 @@ Stack trace:
 [14-Nov-2025 12:33:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
 [14-Nov-2025 12:33:12 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
 [14-Nov-2025 12:33:26 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 14:42:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:44 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:52 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:54 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:42:58 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:43:00 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:43:08 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:43:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:43:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 14:43:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:43:24 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 14:45:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 14:45:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:45:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:45:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:45:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:45:58 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:46:19 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:42 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:55 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:55 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:57 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:57 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:59 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:47:59 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:48:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 14:48:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:48:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:48:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:48:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:48:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:48:50 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:49:46 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 14:49:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 15:01:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 15:02:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: mysqli object is already closed in C:\xampp\htdocs\pitstop pro\pitstop pro\signup.php:275
+Stack trace:
+#0 C:\xampp\htdocs\pitstop pro\pitstop pro\signup.php(275): mysqli->prepare('INSERT INTO tbl...')
+#1 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\signup.php on line 275
+[18-Nov-2025 15:17:30 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 15:17:41 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 15:17:41 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:17:41 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:17:41 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:17:41 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:17:48 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:18:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:18:23 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:18:23 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 15:24:50 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:24:50 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 15:28:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 15:28:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:03 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:18 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:28:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 15:37:24 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:37:26 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:37:47 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 15:37:47 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:37:59 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 15:37:59 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:39:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:39:54 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:39:55 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:41:53 Europe/Berlin] PHP Parse error:  syntax error, unexpected token "function" in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 610
+[18-Nov-2025 15:43:04 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:04 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:04 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:04 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:43:14 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 15:45:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:40 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:49 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:52 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 15:45:52 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function generateBill() in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php:126
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 126
+[18-Nov-2025 16:28:32 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 16:28:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:38 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:39 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:40 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:42 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:28:45 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:29:01 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:29:01 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:29:31 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:29:31 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:31:08 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:10 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:31:15 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:22 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:28 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:40 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:45 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:51 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:53 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:31:57 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:32:09 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:32:12 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:32:12 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:38:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:07 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:08 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:12 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:14 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:17 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:38:17 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:40:00 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:40:00 Europe/Berlin] Error in createBill: Prepare failed: Unknown column 'bill_number' in 'field list'
+[18-Nov-2025 16:48:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:06 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:08 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:10 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:12 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:12 Europe/Berlin] tbl_bill columns: Array
+(
+    [0] => bill_id
+    [1] => bill_number
+    [2] => booking_id
+    [3] => total_amount
+    [4] => Payment_status
+)
+
+[18-Nov-2025 16:48:12 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php:628
+Stack trace:
+#0 C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php(150): createBill(3, 'Akshay', 'Break check', 800)
+#1 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 628
+[18-Nov-2025 16:48:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:21 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:48:22 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 16:49:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:33 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:34 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:35 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:36 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:42 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:46 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:49:46 Europe/Berlin] tbl_bill columns: Array
+(
+    [0] => bill_id
+    [1] => bill_number
+    [2] => booking_id
+    [3] => total_amount
+    [4] => Payment_status
+)
+
+[18-Nov-2025 16:49:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php:628
+Stack trace:
+#0 C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php(150): createBill(5, 'Thomas P Tomy', 'Wheel Alignment', 600)
+#1 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 628
+[18-Nov-2025 16:50:53 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:50:53 Europe/Berlin] tbl_bill columns: Array
+(
+    [0] => bill_id
+    [1] => bill_number
+    [2] => booking_id
+    [3] => total_amount
+    [4] => Payment_status
+)
+
+[18-Nov-2025 16:50:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php:628
+Stack trace:
+#0 C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php(150): createBill(5, 'Thomas P Tomy', 'Wheel Alignment', 600)
+#1 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 628
+[18-Nov-2025 16:56:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:05 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_login.php on line 5
+[18-Nov-2025 16:56:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:20 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:23 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:24 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:25 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:27 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:30 Europe/Berlin] PHP Notice:  session_start(): Ignoring session_start() because a session is already active in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php on line 9
+[18-Nov-2025 16:56:30 Europe/Berlin] tbl_bill columns: Array
+(
+    [0] => bill_id
+    [1] => bill_number
+    [2] => booking_id
+    [3] => total_amount
+    [4] => Payment_status
+)
+
+[18-Nov-2025 16:56:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on bool in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php:628
+Stack trace:
+#0 C:\xampp\htdocs\pitstop pro\pitstop pro\admin_ajax.php(150): createBill(5, 'Thomas P Tomy', 'Wheel Alignment', 600)
+#1 {main}
+  thrown in C:\xampp\htdocs\pitstop pro\pitstop pro\admin_functions.php on line 628
